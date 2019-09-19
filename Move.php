@@ -4,7 +4,7 @@ class SMS
 {
 protected $config;
 
-public function __construct($username, $Key, $senderId)
+public function __construct($username = 'maukoese', $Key = '3y9zSXGI7hT1GkPA3Eyvs4BnA7RJijX0YN4lg2bwpxMBvukwyA', $senderId = 'SMARTLINK')
 {
 $config = array(
             'action' => 'compose',
@@ -18,7 +18,7 @@ $config = array(
 public function send($tophonenumber, $finalmessage, $msgtype = 5, $dlr = 0)
 {
             $url => "https://www.sms.movesms.co.ke/API/
-            //https://sms.movesms.co.ke/api/compose?username=maukoese&api_key=&sender=SMARTLINK&to=[Your+Recipients]&message=[Your message]&msgtype=[Type of the message]&dlr=[Type of Delivery Report]
+            //https://sms.movesms.co.ke/api/compose?username=maukoese&api_key=3y9zSXGI7hT1GkPA3Eyvs4BnA7RJijX0YN4lg2bwpxMBvukwyA&sender=SMARTLINK&to=[Your+Recipients]&message=[Your message]&msgtype=[Type of the message]&dlr=[Type of Delivery Report]
 
 $postData = array(
             'action' => 'compose',
@@ -30,7 +30,6 @@ $postData = array(
             'msgtype' => $msgtype,
             'dlr' => $dlr,
         );
-
 
         $ch = curl_init();
         curl_setopt_array($ch, array(
@@ -57,7 +56,7 @@ $postData = array(
       
       public function balance()
       {
-      $url = "https://sms.movesms.co.ke/api/balance?api_key={$this->key}";
+      $url = "https://sms.movesms.co.ke/api/balance?api_key={$this->config->key}";
       }
             
             public function schedule($time)
