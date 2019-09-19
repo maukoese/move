@@ -4,12 +4,12 @@ class Move
 {
 protected $config;
 
-public function __construct($username, $Key, $senderId, $tophonenumber, $finalmessage, $msgtype, $dlr)
+public function __construct($username, $Key, $senderId)
 {
 $config = array(
             'action' => 'compose',
             'username' => $username,
-            'api_key' => $Key,
+            'key' => $Key,
             'sender' => $senderId,
         );
         $this->config = (object)$config;
@@ -17,13 +17,13 @@ $config = array(
 
 public function send($tophonenumber, $finalmessage, $msgtype, $dlr)
 {
-CURLOPT_URL => "https://www.sms.movesms.co.ke/API/
+            $url => "https://www.sms.movesms.co.ke/API/
 
 $postData = array(
             'action' => 'compose',
-            'username' => $username,
-            'api_key' => $Key,
-            'sender' => $senderId,
+            'username' => $this->config->username,
+            'api_key' => $this->config->key,
+            'sender' => $this->config->sender,
             'to' => $tophonenumber,
             'message' => $finalmessage,
             'msgtype' => $msgtype,
@@ -46,11 +46,12 @@ $postData = array(
         $output = curl_exec($ch);
 
         if (curl_errno($ch)) {
-            // echo 'error:' . curl_error($ch);
             $output = curl_error($ch);
         }
+        
+        return $output;;
 
         curl_close($ch);
-        }
+      }
 
  }
