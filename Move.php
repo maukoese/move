@@ -1,6 +1,6 @@
 <?php 
-
-class Move
+namespace Osen\Move;
+class SMS
 {
 protected $config;
 
