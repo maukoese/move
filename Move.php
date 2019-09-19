@@ -15,9 +15,10 @@ $config = array(
         $this->config = (object)$config;
 }
 
-public function send($tophonenumber, $finalmessage, $msgtype, $dlr)
+public function send($tophonenumber, $finalmessage, $msgtype = 5, $dlr = 0)
 {
             $url => "https://www.sms.movesms.co.ke/API/
+            //https://sms.movesms.co.ke/api/compose?username=maukoese&api_key=&sender=SMARTLINK&to=[Your+Recipients]&message=[Your message]&msgtype=[Type of the message]&dlr=[Type of Delivery Report]
 
 $postData = array(
             'action' => 'compose',
@@ -53,5 +54,20 @@ $postData = array(
 
         curl_close($ch);
       }
+      
+      public function balance()
+      {
+      $url = "https://sms.movesms.co.ke/api/balance?api_key={$this->key}";
+      }
+            
+            public function schedule($time)
+            {
+                        $url = "https://sms.movesms.co.ke/api/schedule?username=maukoese&api_key=&sender=SMARTLINK&to=[Your+Recipients]&message=[Your message]&msgtype=[Type of the message]&dlr=[Type of Delivery Report]&scheduletime=[Schedule Time (Y-m-d H:i:s)]";
+            }
+            
+            public function subscribe($phones = array())
+            {
+                        $url = "https://sms.movesms.co.ke/api/marketlist?username=maukoese&api_key=&market_list_id=[Market List Id]&name=[Name]&phonenumber=[Phonenumber]";
+            }
 
  }
