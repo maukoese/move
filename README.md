@@ -8,5 +8,5 @@ $sms = new \Osen\Move\SMS($username, $Key, $senderId)
 
 ## Send SMS
 ```php
-$message = $sms->send($tophonenumber, $finalmessage, $msgtype, $dlr);
+$message = $sms->send($phone, $message, $msgtype = 5, $dlr = 0);
 ```
